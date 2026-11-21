@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户查询 - Thymeleaf 演示</title>
+    <style>
+        body {
+            margin: 2rem;
+            font-family: system-ui, "Microsoft YaHei", sans-serif;
+            line-height: 1.6;
+            color: #222;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+        }
+
+        form {
+            margin: 1rem 0;
+        }
+
+        input {
+            padding: .3rem .5rem;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            border: 1px solid #bbb;
+            padding: .35rem .8rem;
+            text-align: left;
+        }
+
+        th {
+            width: 8rem;
+            background: #f4f4f4;
+        }
+
+        caption {
+            caption-side: top;
+            text-align: left;
+            font-size: .9rem;
+            color: #555;
+        }
+
+        .switcher a {
+            margin-right: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+<h1 th:text="${message}">Thymeleaf 初始化成功！</h1>
+
+<form method="get" th:action="@{/demo/user/page}">
+    <label for="username">用户名</label>
+    <input type="text" id="username" name="username"
+           th:value="${param.username != null ? param.username[0] : 'alice'}">
+    <button type="submit">查询</button>
+</form>
+
+<p class="switcher">
+    <a th:href="@{/demo/user/page(username='alice')}">查看 alice</a>
+    <a th:href="@{/demo/user/page(username='bob')}">查看 bob</a>
+</p>
+
+<table>
+    <caption>用户展示信息（UserReadResult）</caption>
+    <tr>
+        <th>id</th>
+        <td th:text="${user.id()}">1</td>
+    </tr>
+    <tr>
+        <th>username</th>
+        <td th:text="${user.username()}">alice</td>
+    </tr>
+    <tr>
+        <th>displayName</th>
+        <td th:text="${user.displayName()}">林同学</td>
+    </tr>
+    <tr>
+        <th>role</th>
+        <td th:text="${user.role()}">CUSTOMER</td>
+    </tr>
+    <tr>
+        <th>status</th>
+        <td th:text="${user.status()}">ENABLED</td>
+    </tr>
+</table>
+
+</body>
+</html>

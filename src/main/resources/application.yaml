@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: MyPetStore-SSM
+  profiles:
+    # 未显式指定其他环境时，默认激活 dev
+    default: dev
+  sql:
+    init:
+      # 启动时不自动建表、不导入初始化数据
+      mode: never
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: org.csu.mypetstore.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      table-underline: true

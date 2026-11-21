@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/MyPetStore?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 2006123114csy
+    hikari:
+      # 连接池初始化时统一会话时区，避免与 serverTimezone 不一致导致时间字段偏移
+      connection-init-sql: "SET time_zone = '+08:00'"
